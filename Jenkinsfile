@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DB_HOST = 'your-rds-endpoint.amazonaws.com'
+        DB_HOST = 'employee.cb6e6aq6ueiq.ap-south-1.rds.amazonaws.com'
         DB_NAME = 'employee_db'
     }
 
