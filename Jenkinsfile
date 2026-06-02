@@ -1,30 +1,58 @@
 pipeline {
+
     agent any
 
     environment {
-        DB_HOST = 'employee.cb6e6aq6ueiq.ap-south-1.rds.amazonaws.com'
+        DB_HOST = 'YOUR_RDS_ENDPOINT'
         DB_NAME = 'employee_db'
     }
 
     stages {
-        stage('Flyway Migrate') {
-            steps {
 
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Validate') {
+            steps {
                 withCredentials([
                     usernamePassword(
-                        credentialsId: 'postgress-dev',
+                        credentialsId: 'postgres-dev',
                         usernameVariable: 'DB_USER',
                         passwordVariable: 'DB_PASSWORD'
                     )
                 ]) {
 
                     sh '''
-                    echo "Running migration"
-
                     flyway \
                     -url=jdbc:postgresql://${DB_HOST}:5432/${DB_NAME} \
                     -user=$DB_USER \
                     -password=$DB_PASSWORD \
+                    -locations=filesystem:sql \
+                    validate
+                    '''
+                }
+            }
+        }
+
+        stage('Migrate') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'postgres-dev',
+                        usernameVariable: 'DB_USER',
+                        passwordVariable: 'DB_PASSWORD'
+                    )
+                ]) {
+
+                    sh '''
+                    flyway \
+                    -url=jdbc:postgresql://${DB_HOST}:5432/${DB_NAME} \
+                    -user=$DB_USER \
+                    -password=$DB_PASSWORD \
+                    -locations=filesystem:sql \
                     migrate
                     '''
                 }
