@@ -19,7 +19,7 @@ pipeline {
             steps {
                 withCredentials([
                     usernamePassword(
-                        credentialsId: 'postgres-dev',
+                        credentialsId: 'postgress-dev',
                         usernameVariable: 'DB_USER',
                         passwordVariable: 'DB_PASSWORD'
                     )
@@ -41,7 +41,7 @@ pipeline {
             steps {
                 withCredentials([
                     usernamePassword(
-                        credentialsId: 'postgres-dev',
+                        credentialsId: 'postgress-dev',
                         usernameVariable: 'DB_USER',
                         passwordVariable: 'DB_PASSWORD'
                     )
