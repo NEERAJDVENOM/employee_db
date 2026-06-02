@@ -12,7 +12,7 @@ pipeline {
 
                 withCredentials([
                     usernamePassword(
-                        credentialsId: 'postgres-dev',
+                        credentialsId: 'postgress-dev',
                         usernameVariable: 'DB_USER',
                         passwordVariable: 'DB_PASSWORD'
                     )
