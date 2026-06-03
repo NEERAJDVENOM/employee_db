@@ -87,6 +87,7 @@ Configuration:
 Verified connectivity using pgAdmin.
 
 ---
+![Jenkins Pipeline](aws_postgres.png)
 
 ### Step 3: Setup Docker Desktop
 
@@ -119,10 +120,13 @@ Used Docker Desktop UI to:
 * Configure persistent volume
 
 Jenkins became available at:
+![Docker Setup](docker.png)
 
 ```text
+
 http://localhost:9090
 ```
+![Jenkins Pipeline](jenkins.png)
 
 Installed recommended plugins during initial setup.
 
