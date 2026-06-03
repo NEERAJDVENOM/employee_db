@@ -1,3 +1,4 @@
+# PART 1
 # Database CI/CD Pipeline using Jenkins, Flyway, Docker, and AWS PostgreSQL
 
 ## Project Overview
@@ -164,6 +165,8 @@ flyway_schema_history
 ```
 
 table automatically.
+
+![Jenkins Pipeline](postgres.png)
 
 ---
 
